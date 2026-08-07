@@ -1,0 +1,26 @@
+﻿@model GerenciadorNotas.ViewModels.NovaNotaViewModel
+
+@{
+    ViewData["Title"] = "Cadastrar Nota";
+}
+
+<h1>Cadastrar nota</h1>
+
+<form asp-action="Cadastrar" method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <div class="mb-3">
+        <label asp-for="Titulo" class="form-label">Título</label>
+        <input asp-for="Titulo" class="form-control" />
+        <span asp-validation-for="Titulo" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Conteudo" class="form-label">Conteúdo</label>
+        <textarea asp-for="Conteudo" class="form-control"></textarea>
+        <span asp-validation-for="Conteudo" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-success">Salvar</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+</form>

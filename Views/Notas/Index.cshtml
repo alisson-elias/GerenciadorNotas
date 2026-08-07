@@ -1,0 +1,44 @@
+﻿@model List<GerenciadorNotas.Models.Nota>
+
+@{
+    ViewData["Title"] = "Notas";
+}
+
+<h1>NOTAS</h1>
+
+<p>
+    <a asp-action="Cadastrar" class="btn btn-primary">Cadastrar Nota</a>
+</p>
+
+@if (!Model.Any())
+{
+    <div class="alert alert-info">
+        Nenhuma nota cadastrada.
+    </div>
+}
+else
+{
+    <table class="table">
+        
+    </table>
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Título</th>
+            <th>Conteúdo</th>
+            <th>Data de Criacão</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var resgistro in Model)
+        {
+            <tr>
+                <td>@resgistro.Titulo</td>
+                <td>@resgistro.Conteudo</td>
+                <td>@resgistro.DataCriacao.ToString("dd/MM/yyyy")</td>
+            </tr>
+        }
+    </tbody>
+</table>
