@@ -10,8 +10,8 @@ namespace GerenciadorNotas
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
-           
-            builder.Services.AddSingleton<NotaService>();
+
+            builder.Services.AddSingleton<INotaService, NotaService>();           
 
             var app = builder.Build();
 

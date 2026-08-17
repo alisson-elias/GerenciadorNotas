@@ -4,41 +4,52 @@
     ViewData["Title"] = "Notas";
 }
 
-<h1>NOTAS</h1>
-
-<p>
-    <a asp-action="Cadastrar" class="btn btn-primary">Cadastrar Nota</a>
-</p>
-
-@if (!Model.Any())
-{
-    <div class="alert alert-info">
-        Nenhuma nota cadastrada.
+<div class="page-heading">
+    <div>
+        <h1>Notas</h1>
+        <p>Gerencie as Notas cadastradas.</p>
     </div>
+    <a asp-action="Cadastrar" class="button">Nova Nota</a>
+</div>
+
+@if (TempData["Mensagem"] is not null)
+{
+    <div class="alert success">
+        @TempData["Mensagem"]
+    </div>
+}
+
+@if (Model.Count == 0)
+{
+    <div class="empty">Nenhuma nota cadastrada.</div>
 }
 else
 {
-    <table class="table">
-        
-    </table>
+    <div class="table-wrap">
+        <table>
+            <thead>
+                <tr>
+                    <th>Título</th>
+                    <th>Conteudo</th>
+                    <th>DataCriacao</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var nota in Model)
+                {
+                    <tr>
+                        <td>@nota.Titulo</td>
+                        <td>@nota.Conteudo</td>
+                        <td>@nota.DataCriacao.ToString("dd/MM/yyyy")</td>
+                        <td class="actions">
+                            <a asp-action="Detalhes" asp-route-id="@nota.Id">Detalhes</a>
+                            <a asp-action="Editar" asp-route-id="@nota.Id">Editar</a>
+                            <a class="danger-link" asp-action="Excluir" asp-route-id="@nota.Id">Excluir</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
 }
-
-<table class="table">
-    <thead>
-        <tr>
-            <th>Título</th>
-            <th>Conteúdo</th>
-            <th>Data de Criacão</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var resgistro in Model)
-        {
-            <tr>
-                <td>@resgistro.Titulo</td>
-                <td>@resgistro.Conteudo</td>
-                <td>@resgistro.DataCriacao.ToString("dd/MM/yyyy")</td>
-            </tr>
-        }
-    </tbody>
-</table>

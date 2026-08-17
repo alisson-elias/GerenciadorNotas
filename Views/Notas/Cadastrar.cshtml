@@ -6,21 +6,38 @@
 
 <h1>Cadastrar nota</h1>
 
-<form asp-action="Cadastrar" method="post">
+<form asp-action="Cadastrar" method="post" class="form-card">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-    <div class="mb-3">
+    <div>
+        <label asp-for="Titulo"></label>
+        <input asp-for="Titulo" class="input" />
+        <span asp-validation-for="Titulo" class="validation"></span>
+    </div>
+    @* <div class="mb-3">
         <label asp-for="Titulo" class="form-label">Título</label>
         <input asp-for="Titulo" class="form-control" />
         <span asp-validation-for="Titulo" class="text-danger"></span>
-    </div>
+    </div> *@
 
-    <div class="mb-3">
+    @* <div class="mb-3">
         <label asp-for="Conteudo" class="form-label">Conteúdo</label>
         <textarea asp-for="Conteudo" class="form-control"></textarea>
         <span asp-validation-for="Conteudo" class="text-danger"></span>
+    </div> *@
+    <div>
+        <label asp-for="Conteudo"></label>
+        <textarea asp-for="Conteudo" class="input"></textarea>
+        <span asp-validation-for="Conteudo" class="validation"></span>
     </div>
 
-    <button type="submit" class="btn btn-success">Salvar</button>
-    <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+    <div class="form-actions">
+    @* <button type="submit" class="btn btn-success">Salvar</button> *@
+        <button type="submit" class="button">Salvar</button>
+        <a asp-action="Index" class="button secondary">Cancelar</a>
+    </div>
 </form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
